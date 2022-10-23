@@ -1,0 +1,61 @@
+@model IEnumerable<SustainabotMVC.Models.Review>
+
+@{
+    double avg = 0.0;
+    int count = 0;
+    foreach(var item in Model) {
+        avg += item.Rating;
+        count++;
+    }
+
+    if (count > 0) {
+        avg = avg / count;
+    }
+
+    double rating = Math.Round(avg, 2);
+}
+
+<div class="row" style="margin-left:1%">
+    <h1>@ViewData["Title"] - Rating: @rating/5</h1>
+</div>
+
+<div class="flex-container">
+
+        @foreach(var item in Model) 
+        {
+        <div class="mb-3" style="width:46%; float:left; margin-left:2%; margin-right:2%">
+            <div class="card border-primary">
+                <div class="card-header">Product: @item.Product</div>
+                @*<div class="card-body">
+                   <div style="float:left">
+                        <h4 class="card-title">@item.Rating / 5</h4>
+                        <p class="card-text">@item.Summary</p>
+                    </div>
+
+                    <div style="float:right; margin-left:1%">
+                    <img src="~/images/@item.ImgPath"   
+                         height="200px" width="200px"   
+                         asp-append-version="true" />
+                    </div>  
+                    
+                </div>*@
+                <div class="card-body">
+                    <div class="row">
+                        <div class="col-7">
+                                <h4 class="card-title">@item.Rating / 5</h4>
+                                <p class="card-text">@item.Summary</p>
+                        </div>
+
+                        <div class="col-5 justify-content-right">
+                        <img src="~/images/@item.ImgPath"   
+                            height="200px" width="200px"   
+                            asp-append-version="true" />
+                        </div>  
+                    </div>
+                </div>
+            </div>
+        </div>
+        }
+
+</div>
+

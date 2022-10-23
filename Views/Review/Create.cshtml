@@ -1,0 +1,74 @@
+@model SustainabotMVC.Models.ReviewImgFile
+
+@{
+    ViewData["Title"] = "Write Review";
+}
+
+<h1>Write Review</h1>
+
+<hr />
+<form asp-action="Create" enctype="multipart/form-data">  
+    <div class="row">
+        <div class="col-6">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="Company" class="control-label"></label>
+                <input asp-for="Company" class="form-control" />
+                <span asp-validation-for="Company" class="text-danger"></span>
+            </div>
+            <br/>
+            <div class="form-group">
+                <label asp-for="Product" class="control-label"></label>
+                <input asp-for="Product" class="form-control" />
+                <span asp-validation-for="Product" class="text-danger"></span>
+            </div>
+            <br/>
+            <div class="form-group">
+                <label asp-for="Rating" class="control-label"></label>
+                <input asp-for="Rating" class="form-control" />
+                <span asp-validation-for="Rating" class="text-danger"></span>
+            </div>
+        </div>
+        <div class="col-6">
+            <div class="form-group">
+                <label asp-for="Summary" class="control-label"></label>
+                <textarea asp-for="Summary" class="form-control" rows="4"></textarea>
+                <span asp-validation-for="Summary" class="text-danger"></span>
+            </div>
+            <br/>
+            <div class="form-group">
+                <label class="control-label">Image</label>
+                <input asp-for="ImgFile" accept="image/*" class="form-control"/>
+                <span asp-validation-for="ImgFile" class="text-danger"></span>
+            </div>
+        </div>
+    </div>
+    <div class="row text-center mt-3">
+        <div class="form-group">
+            <input type="submit" value="Create" class="btn btn-lg btn-primary" style="width:25%" />
+        </div>
+    </div>
+</form>
+
+<br/>
+<br/>
+<br/>
+<br/>
+<div class="text-center">
+    <a asp-controller="Home" asp-action="Index">Back to Home</a>
+</div>
+
+
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+
+    <script type="text/javascript">  
+        // Add the following code if you want the name of the file appear on select  
+        $(".custom-file-input").on("change", function () {  
+            var fileName = $(this).val().split("\\").pop();  
+            $(this).siblings(".custom-file-label").addClass("selected").html(fileName);  
+        });  
+    </script>  
+ 
+}

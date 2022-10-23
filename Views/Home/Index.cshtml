@@ -1,0 +1,34 @@
+﻿@{
+    ViewData["Title"] = "Home Page";
+}
+
+<style>
+    #backgroundTarget {
+        background-image: url("assets/new_packing_background.jpg");
+    }
+</style>
+
+<div class="row">
+    <div class="text-center" id="backgroundTarget">
+    <h1><font color="006400">Green</font>Pack Feedback</h1>
+    <br>
+    <br>
+    <br>
+    <br>
+    <h2>Enter a company to get started!</h2>
+    <br>
+</div>
+
+<div class="row">
+    <div class="col-12 text-center">
+        <form asp-controller="Review" asp-action="Index">
+            <input type="text" class="form-control-lg rounded-left" name="SearchString" placeholder="Search company name..." style="width:80%">
+            <input type="submit" class="btn btn-primary btn-lg" value="Go!" />
+        </form>
+
+        <p>
+            <a asp-controller="Review" asp-action="Create" class="btn btn-secondary btn-lg">Or, write a review.</a>
+        </p>
+    </div>
+</div>
+
